@@ -24,7 +24,7 @@ const Content = ({ color, setColor, handleChange, colorName, setColorName, compl
         setHoverId(null)
     }
 
-    const { monochromatic, triad, tetrad, analogous, splitComplementary1, splitComplementary2 } = handleCardsValue(color)
+    const { monochromatic, triad, tetrad, analogous } = handleCardsValue(color)
 
     const [paletteValues, setPaletteValues] = useState([...analogous])
     const handleSchemeChange = () => {
@@ -52,15 +52,6 @@ const Content = ({ color, setColor, handleChange, colorName, setColorName, compl
         },
     ])
 
-    // const handleCardsChange = () => {
-    //     const newColorCards = [
-    //         { id: 0, value: paletteValues[1] },
-    //         { id: 1, value: paletteValues[3] },
-    //         { id: 2, value: paletteValues[0] },
-    //         { id: 3, value: paletteValues[2] },
-    //     ]
-    //     setColorCard(newColorCards)
-    // }
     useEffect(() => {
 
         const newColorCards = [
@@ -69,12 +60,7 @@ const Content = ({ color, setColor, handleChange, colorName, setColorName, compl
             { id: 2, value: paletteValues[0] },
             { id: 3, value: paletteValues[2] },
         ]
-        // setColorCard([
-        //     { id: 0, value: paletteValues[1] },
-        //     { id: 1, value: paletteValues[3] },
-        //     { id: 2, value: paletteValues[0] },
-        //     { id: 3, value: paletteValues[2] },
-        // ])
+
         setColorCard(newColorCards)
 
     }, [paletteValues])

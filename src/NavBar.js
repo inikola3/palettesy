@@ -1,6 +1,5 @@
 import React from 'react'
 import { IoColorPaletteOutline } from 'react-icons/io5'
-import { IoDiceOutline } from 'react-icons/io5'
 
 const NavBar = ({ setColor, setColorName, handleColorName, setComplementaryValue, handleComplementary, handleConvertToRGB, handleRandomHex, setIsRadioActive }) => {
 

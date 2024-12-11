@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import Content from './Content'
 import { useState } from 'react';
-import { useEffect } from 'react';
 import Header from './Header';
-import SchemeRadioGroup from './SchemeRadioGroup'
 import NavBar from './NavBar';
 import tinycolor from "tinycolor2"
 
@@ -52,8 +49,6 @@ function App() {
   const [complementaryValue, setComplementaryValue] = useState(handleComplementary(handleConvertToRGB(color)))
   const [colorName, setColorName] = useState(handleColorName(color))
 
-  const [randomValue, setRandomValue] = useState(handleRandomHex())
-
   const handleChange = (e) => {
     e.preventDefault()
   }
@@ -78,21 +73,18 @@ function App() {
   }
 
   const handleCardsValue = (color) => {
-    // const baseColor = tinycolor(color)
     const monochromatic = tinycolor(color).monochromatic()
-    // console.log('HSV', monochromatic)
     const triadColors = tinycolor(color).triad()
     const tetradColors = tinycolor(color).tetrad()
-    const analogous = tinycolor(color).analogous()
-
 
     const analogous1 = tinycolor(color).spin(-30).toString()
     const analogous2 = tinycolor(color).spin(30).toString()
     const analogous3 = tinycolor(color).spin(-60).toString()
     const analogous4 = tinycolor(color).spin(60).toString()
+
     const splitComplementary1 = tinycolor(color).spin(150).toString()
     const splitComplementary2 = tinycolor(color).spin(210).toString()
-    // console.log(analogous1, analogous2, splitComplementary1, splitComplementary2)
+
     return {
       monochromatic: monochromatic.slice(1).map(m => m.toHexString()),
       triad: triadColors.slice(1).map(t => t.toHexString()),
@@ -131,7 +123,6 @@ function App() {
         handleRandomHex={handleRandomHex}
         setIsRadioActive={setIsRadioActive}
       />
-      {/* <SchemeRadioGroup /> */}
       <Content
         color={color}
         setColor={setColor}
