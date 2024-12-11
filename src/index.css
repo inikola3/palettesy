@@ -1,13 +1,678 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "komet", sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* :focus {
+  outline: 3px solid #000;
+  outline-offset: 3px;
+} */
+
+h1 {
+  position: relative;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  /* font-family: 'Impact'; */
+  font-family: "komet", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+header {
+  position: relative;
+  order: 1;
+  display: flex;
+  flex-direction: row;
+  padding-left: 40px;
+  justify-content: flex-start;
+  align-items: center;
+  top: 0px;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid rgb(211, 209, 209);
+  background-color: #fff;
+  color: #000000;
+  font-weight: 100;
+  /* font-size: 20px; */
+}
+
+.logo {
+  position: relative;
+}
+
+/* .logo::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: blue;
+  bottom: 0;
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 5px;
+  height: 5px;
+  background: green;
+  transform: rotate(45deg);
+}
+
+.logoColors {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  transform: rotate(45deg);
+} */
+
+.navBar {
+  order: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 100px;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid rgb(211, 209, 209);
+}
+
+.navBar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.generateBtn {
+  position: relative;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  height: 40px;
+  padding: 5px;
+  cursor: pointer;
+  /* transition: all 0.1s ease-in; */
+}
+
+.generateBtn .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  top: 130%;
+  left: 50%;
+  margin-left: -60px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.generateBtn .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+  pointer-events: none;
+}
+
+.navBtn {
+  position: relative;
+  background-color: transparent;
+  color: #000;
+  border: 2px solid black;
+  /* box-shadow: 1px 1px 3px 2px #000; */
+  border-radius: 8px;
+  height: 40px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.navBtn .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  top: 130%;
+  left: 50%;
+  margin-left: -60px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.navBtn .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+  pointer-events: none;
+}
+
+.navBtn:hover {
+  bottom: 3px;
+  box-shadow: 2px 4px 2px #000;
+  /* border-bottom: 4px solid #000; */
+}
+
+.colorBtn:hover .colorCard {
+  margin-right: 10px;
+}
+
+.navBtn:hover .tooltiptext {
+  visibility: visible;
+}
+
+.generateBtn:hover {
+  bottom: 3px;
+  background-color: #FFF;
+  color: #000000;
+  box-shadow: 2px 3px 2px #000;
+}
+
+.generateBtn:hover .tooltiptext {
+  visibility: visible;
+}
+
+.mainContent {
+  order: 3;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  /* margin-top: 5px; */
+  width: 100%;
+  height: 100%;
+  gap: 0px;
+  /* border: 1px solid black; */
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.radioGroup {
+  z-index: 1001;
+  padding-top: 200px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  /* border-radius: 30px; */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.contentBox {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.colorCard {
+  display: flex;
+  position: relative;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* 
+.colorCard::after {
+  content: "";
+  position: absolute;
+  display: flex;
+  width: 100px;
+
+} */
+
+.addCardBox {
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+  width: 0px;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  pointer-events: none;
+  background-color: #FFF;
+  transition: width 0.2s ease;
+}
+
+.addCardBox.active {
+  width: 50px;
+}
+
+.closeBtn {
+  position: absolute;
+  border-radius: 50px;
+  height: 40px;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in;
+}
+
+.closeBtn:hover {
+  transform: rotate(90deg);
+}
+
+.infoBox {
+  display: none;
+  z-index: 1000;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  /* padding-left: 10px; */
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.infoBox li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10px;
+  margin-top: 15px;
+  margin-left: 1px;
+  height: 50px;
+  width: 95%;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.infoBox li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.infoLabel {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid #000000;
+  /* color: #8b8c8e; */
+}
+
+.color-box {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  /* margin-top: 100px; */
+  height: 100%;
+  /* border: 1px solid black; */
+  /* border-radius: 20px; */
+  /* box-shadow: 1px 1px 3px 2px gray; */
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.colorSpecBox {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 50%;
+}
+
+.hexValue {
+  position: relative;
+  bottom: 35px;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 15px;
+  gap: 5px;
+}
+
+.colorBtn {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  /* visibility: hidden; */
+  /* position: absolute; */
+  min-width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px solid black;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.colorBtn:focus {
+  opacity: 1;
+}
+
+.colorBtn .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  top: 120%;
+  left: 50%;
+  margin-left: -50px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.colorBtn .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-top: none;
+  border-color: transparent transparent black transparent;
+  pointer-events: none;
+}
+
+.colorBtn:hover .tooltiptext {
+  visibility: visible;
+}
+
+.colorBtn:hover {
+  background-color: var(--hover-color);
+  /* background-color: rgba(0, 0, 0, 0.05); */
+  border: 1.5px solid #121212;
+}
+
+.color-box:hover .colorBtn {
+  opacity: 1;
+  /* visibility: visible; */
+}
+
+/* .info {
+  top: 150px;
+}
+
+.copy {
+  top: 100px;
+} */
+
+.colorForm {
+  position: relative;
+  bottom: 35px;
+  width: 150px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 0.5rem 0 0; */
+  /* padding: 5px; */
+  /* background-color: green; */
+}
+
+.colorForm input[type='text'] {
+  flex-grow: 1;
+  max-width: calc(100% - 60px);
+  min-height: 30px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  text-align: center;
+  /* box-shadow: 1px 1px 3px 2px gray; */
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.colorForm input[type='text']:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.colorForm input[type='text']:focus {
+  outline: 2px solid #000;
+}
+
+.hexColorPicker {
+  z-index: 10000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 40px;
+  /* background-color: red; */
+}
+
+.hexColorPicker .react-colorful {
+  height: 150px;
+  width: 200px;
+  padding: 15px;
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0 3px 6px #999;
+}
+
+.hexColorPicker .react-colorful__hue {
+  margin-top: 15px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  height: 10px;
+}
+
+.hexColorPicker .react-colorful__saturation {
+  /* margin: 15px 0; */
+  border-radius: 13px;
+  border-bottom: none;
+}
+
+/* @media screen and (max-height:791px) {
+  .hexValue {
+    bottom: 25px;
+  }
+} */
+
+@media screen and (max-width:789px) {
+  .app {
+    height: calc(100vh - 50px);
+  }
+
+  header {
+    border-bottom: none;
+  }
+
+  .navBar {
+    order: 4;
+    /* border-top: 1px solid rgb(211, 209, 209); */
+    border-bottom: none;
+    padding-right: 60px;
+  }
+
+  .navBtn:hover {
+    bottom: 0px;
+    box-shadow: 0px 0px 0px transparent;
+  }
+
+  .generateBtn:hover {
+    bottom: 0px;
+    background-color: #FFF;
+    color: #000000;
+    box-shadow: 0px 0px 0px transparent;
+  }
+
+  .generateBtn:hover .tooltiptext {
+    visibility: hidden;
+  }
+
+  .navBtn:hover .tooltiptext {
+    visibility: hidden;
+  }
+
+  .colorBtn:hover .tooltiptext {
+    visibility: hidden;
+  }
+
+  .mainContent {
+    flex-direction: column;
+    gap: 0px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .colorCard {
+    background-color: transparent;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* height: 100px; */
+  }
+
+  .addCardBox {
+    display: none;
+  }
+
+  .color-box {
+    background-color: blue;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .btnContainer {
+    position: absolute;
+    flex-direction: row;
+    bottom: -25px;
+    left: 10px;
+  }
+
+  .colorBtn {
+    visibility: visible;
+    /* border: 1px solid #000; */
+  }
+
+  .colorForm {
+    order: -1;
+    top: 0px;
+    left: -17px;
+    width: 150px;
+  }
+
+  .hexColorPicker {
+    left: 120px;
+    bottom: -110px;
+  }
+
+  .color-box {
+    align-items: flex-start;
+  }
+
+  .colorSpecBox {
+    background-color: transparent;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+    left: 10px;
+  }
+
+  .colorName {
+    visibility: hidden;
+    margin-right: 20px;
+  }
+
+  .hexValue {
+    order: -1;
+    position: relative;
+    bottom: 0px;
+    left: 20px;
+  }
+
+  .infoBox ul {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    /* gap: 70px; */
+    margin-bottom: 15px;
+  }
+
+  .infoBox li {
+    width: 150px;
+  }
+
+}
+
+@media screen and (max-width:1220px) and (min-width:769px) {
+  .hexColorPicker {
+    left: 5px;
+  }
 }
