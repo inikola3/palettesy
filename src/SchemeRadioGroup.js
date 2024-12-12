@@ -9,7 +9,7 @@ const SchemeRadioGroup = ({ setIsRadioActive, schemes, selected, setSelected, ha
     }
 
     return (
-        <div className="p-4 absolute z-10 bg-white rounded-2xl">
+        <div className="p-4 my-40 absolute z-10 bg-white rounded-2xl">
             <IoCloseCircleOutline
                 className="size-8 mb-4 cursor-pointer transition duration-150 ease-in hover:rotate-180 outline-none focus-visible:ring-4 focus-visible:ring-black"
                 aria-label="Close the radio group"

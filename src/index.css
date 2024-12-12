@@ -27,7 +27,7 @@ body {
   font-family: "komet", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 code {
@@ -67,47 +67,17 @@ header {
   position: relative;
 }
 
-/* .logo::after {
-  content: '';
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: blue;
-  bottom: 0;
-  left: 0;
-  transform: rotate(45deg);
-}
-
-.logo::before {
-  content: '';
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 5px;
-  height: 5px;
-  background: green;
-  transform: rotate(45deg);
-}
-
-.logoColors {
-  content: '';
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background-color: red;
-  transform: rotate(45deg);
-} */
-
 .navBar {
   order: 2;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  padding: 10px;
   padding-left: 30px;
   padding-right: 100px;
   width: 100%;
-  height: 80px;
+  /* height: 80px; */
   border-bottom: 1px solid rgb(211, 209, 209);
 }
 
@@ -231,7 +201,7 @@ header {
   justify-content: center;
   /* margin-top: 5px; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   gap: 0px;
   /* border: 1px solid black; */
   border-radius: 30px;
@@ -240,11 +210,13 @@ header {
 
 .radioGroup {
   z-index: 1001;
-  padding-top: 200px;
+  /* padding-top: 200px; */
   position: absolute;
+  display: flex;
+  /* align-items: center; */
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   justify-content: center;
   /* border-radius: 30px; */
   background-color: rgba(0, 0, 0, 0.4);
@@ -512,7 +484,6 @@ header {
   align-items: center;
   position: absolute;
   bottom: 40px;
-  /* background-color: red; */
 }
 
 .hexColorPicker .react-colorful {
@@ -545,7 +516,9 @@ header {
 
 @media screen and (max-width:789px) {
   .app {
-    height: calc(100vh - 50px);
+    height: 100vh;
+    /* height: calc(100vh - 0px); */
+    position: relative;
   }
 
   header {
@@ -553,10 +526,14 @@ header {
   }
 
   .navBar {
+    position: relative;
+    bottom: 0;
+    z-index: 100;
     order: 4;
     /* border-top: 1px solid rgb(211, 209, 209); */
     border-bottom: none;
     padding-right: 60px;
+    margin-bottom: 0px;
   }
 
   .navBtn:hover {
@@ -571,16 +548,16 @@ header {
     box-shadow: 0px 0px 0px transparent;
   }
 
-  .generateBtn:hover .tooltiptext {
-    visibility: hidden;
+  .generateBtn .tooltiptext {
+    display: none;
   }
 
-  .navBtn:hover .tooltiptext {
-    visibility: hidden;
+  .navBtn .tooltiptext {
+    display: none;
   }
 
-  .colorBtn:hover .tooltiptext {
-    visibility: hidden;
+  .colorBtn .tooltiptext {
+    display: none;
   }
 
   .mainContent {
@@ -589,6 +566,7 @@ header {
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
+    border-radius: 0px;
   }
 
   .colorCard {
