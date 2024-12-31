@@ -2,14 +2,13 @@ import { Radio, RadioGroup } from '@headlessui/react'
 import { IoCheckboxOutline } from 'react-icons/io5'
 import { IoCloseCircleOutline } from 'react-icons/io5'
 
-const SchemeRadioGroup = ({ setIsRadioActive, schemes, selected, setSelected }) => {
+const LayoutRadioGroup = ({ setIsLayoutActive, layout, layoutSelected, setLayoutSelected }) => {
     const handleChange = () => {
-        // handleSchemeChange()
-        setIsRadioActive(false)
+        setIsLayoutActive(false)
     }
 
     return (
-        <div className="p-4 my-40 absolute z-10 bg-white rounded-2xl transition-all duration-300 ease-in-out">
+        <div className="p-4 my-40 absolute z-10 bg-white rounded-2xl">
             <IoCloseCircleOutline
                 className="size-8 mb-4 cursor-pointer transition duration-150 ease-in hover:rotate-180 outline-none focus-visible:ring-4 focus-visible:ring-black"
                 aria-label="Close the radio group"
@@ -22,22 +21,21 @@ const SchemeRadioGroup = ({ setIsRadioActive, schemes, selected, setSelected }) 
                 role="button"
                 tabIndex={0}
             />
-            <h2 className='absolute top-4 left-14'>Choose a Palette Scheme</h2>
+            <h2 className='absolute top-4 left-16'>Choose a Layout</h2>
             <div className="mx-auto relative w-full max-w-md">
 
-                <RadioGroup by="name" value={selected} onChange={setSelected} aria-label="Palette scheme" className="space-y-2">
-                    {schemes.map((scheme) => (
+                <RadioGroup by="name" value={layoutSelected} onChange={setLayoutSelected} aria-label="Layout" className="space-y-2">
+                    {layout.map((layout) => (
                         <Radio
-                            tabIndex={0}
-                            key={scheme.name}
-                            value={scheme}
-                            className="group relative flex cursor-pointer rounded-lg bg-white py-4 px-5 text-white shadow-md transition focus:outline-none data-[focus]:outline-3 data-[focus]:outline-black data-[checked]:bg-blue-200 "
+                            key={layout.name}
+                            value={layout}
+                            className="group relative flex cursor-pointer rounded-lg bg-white py-4 px-5 text-white shadow-md transition focus-visible:ring-4 focus-visible:ring-black data-[focus]:outline-3 data-[focus]:outline-black data-[checked]:bg-blue-200 "
                         >
                             <div className="flex w-full items-center justify-between">
                                 <div className="text-sm/6">
-                                    <p className="font-semibold text-black">{scheme.name}</p>
-                                    <div className="flex gap-2 text-[#6e6e73]">
-                                        <div>{scheme.description}</div>
+                                    <p className="font-semibold text-black">{layout.name}</p>
+                                    <div className="flex font-bold gap-2 text-[#6e6e73]">
+                                        <div>{layout.description}</div>
                                     </div>
                                 </div>
                                 <IoCheckboxOutline
@@ -53,4 +51,5 @@ const SchemeRadioGroup = ({ setIsRadioActive, schemes, selected, setSelected }) 
 }
 
 
-export default SchemeRadioGroup
+export default LayoutRadioGroup
+

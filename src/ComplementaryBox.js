@@ -3,9 +3,10 @@ import { useState } from 'react'
 import ColorInfoBox from './ColorInfoBox'
 import CardButtons from './CardButtons'
 
-const ComplementaryBox = ({ complementaryValue, handleTextContrast, handleCopy, copied, setCopied, id, handleRemoveCard, cardTotal, handleAddCard, handleAddHover, handleRemoveHover }) => {
+const ComplementaryBox = ({ complementaryValue, handleTextContrast, handleCopy, copied, setCopied, id, handleRemoveCard, cardTotal, handleAddCard, handleAddHover, handleRemoveHover, layoutSelected }) => {
     const style = {
-        backgroundColor: `${complementaryValue}`
+        backgroundColor: `${complementaryValue}`,
+        borderRadius: layoutSelected.name === 'Round' ? '1000px' : ''
     }
     const namer = require('color-namer')
     const names = namer(complementaryValue)
@@ -13,7 +14,7 @@ const ComplementaryBox = ({ complementaryValue, handleTextContrast, handleCopy, 
     const [isActive, setIsActive] = useState(false)
 
     return (
-        <div className='color-box' style={style}>
+        <div className={layoutSelected.name === 'Swiss Geometric' ? `grid-item item-${id + 1}` : 'color-box'} style={style}>
             {isActive && (<ColorInfoBox
                 colorValue={complementaryValue}
                 handleTextContrast={handleTextContrast}
@@ -22,7 +23,7 @@ const ComplementaryBox = ({ complementaryValue, handleTextContrast, handleCopy, 
                 setCopied={setCopied}
                 handleCopy={handleCopy}
             />)}
-            <div className='colorSpecBox'>
+            {layoutSelected.name !== 'Swiss Geometric' && <div className='colorSpecBox'>
                 <p className='colorName'
                     style={{ color: handleTextContrast(complementaryValue), textAlign: 'center' }}
                 >
@@ -40,6 +41,7 @@ const ComplementaryBox = ({ complementaryValue, handleTextContrast, handleCopy, 
                     cardTotal={cardTotal}
                     handleAddHover={handleAddHover}
                     handleRemoveHover={handleRemoveHover}
+                    layoutSelected={layoutSelected.name}
                 />
                 <p className='hexValue'
                     style={{ color: handleTextContrast(complementaryValue) }}
@@ -47,7 +49,29 @@ const ComplementaryBox = ({ complementaryValue, handleTextContrast, handleCopy, 
                     {complementaryValue.toUpperCase()}
                 </p>
 
-            </div>
+            </div>}
+
+            {layoutSelected.name === 'Swiss Geometric' && <div className='flex flex-col gap-14 justify-center items-center'>
+                <p className='flex absolute'
+                    style={{ color: handleTextContrast(complementaryValue) }}
+                >
+                    {complementaryValue.toUpperCase()}
+                </p>
+                <CardButtons
+                    setIsActive={setIsActive}
+                    handleTextContrast={handleTextContrast}
+                    colorValue={complementaryValue}
+                    handleCopy={handleCopy}
+                    copied={copied}
+                    id={id}
+                    handleRemoveCard={handleRemoveCard}
+                    handleAddCard={handleAddCard}
+                    cardTotal={cardTotal}
+                    handleAddHover={handleAddHover}
+                    handleRemoveHover={handleRemoveHover}
+                    layoutSelected={layoutSelected.name}
+                />
+            </div>}
         </div >
     )
 }

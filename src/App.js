@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from './Header';
 import NavBar from './NavBar';
 import tinycolor from "tinycolor2"
+import Footer from './Footer';
 
 function App() {
   const handleRandomHex = () => {
@@ -76,6 +77,8 @@ function App() {
     const monochromatic = tinycolor(color).monochromatic()
     const triadColors = tinycolor(color).triad()
     const tetradColors = tinycolor(color).tetrad()
+    const tetradIntermediate = tetradColors[1].clone()
+    tetradColors.push(tetradIntermediate.spin(45))
 
     const analogous1 = tinycolor(color).spin(-30).toString()
     const analogous2 = tinycolor(color).spin(30).toString()
@@ -85,6 +88,7 @@ function App() {
     const splitComplementary1 = tinycolor(color).spin(150).toString()
     const splitComplementary2 = tinycolor(color).spin(210).toString()
 
+
     return {
       monochromatic: monochromatic.slice(1).map(m => m.toHexString()),
       triad: triadColors.slice(1).map(t => t.toHexString()),
@@ -93,6 +97,17 @@ function App() {
       splitComplementary1: splitComplementary1,
       splitComplementary2: splitComplementary2
     }
+  }
+
+  const handleComplementaryScheme = (color, cardCount) => {
+    let interpolationValue = 180 / (cardCount - 1)
+    const interpolationChange = interpolationValue
+    const complementaryvalues = []
+    for (let i = 0; i < cardCount - 1; i++) {
+      complementaryvalues.push(tinycolor(color).spin(interpolationValue).toString())
+      interpolationValue += interpolationChange
+    }
+    return complementaryvalues
   }
 
   const [copied, setCopied] = useState(false)
@@ -109,6 +124,7 @@ function App() {
   }
 
   const [isRadioActive, setIsRadioActive] = useState(false)
+  const [isLayoutActive, setIsLayoutActive] = useState(false)
 
   return (
     <div className='app'>
@@ -117,11 +133,9 @@ function App() {
         setColor={setColor}
         setColorName={setColorName}
         handleColorName={handleColorName}
-        setComplementaryValue={setComplementaryValue}
-        handleComplementary={handleComplementary}
-        handleConvertToRGB={handleConvertToRGB}
         handleRandomHex={handleRandomHex}
         setIsRadioActive={setIsRadioActive}
+        setIsLayoutActive={setIsLayoutActive}
       />
       <Content
         color={color}
@@ -144,7 +158,11 @@ function App() {
         setCopied={setCopied}
         isRadioActive={isRadioActive}
         setIsRadioActive={setIsRadioActive}
+        isLayoutActive={isLayoutActive}
+        setIsLayoutActive={setIsLayoutActive}
+        handleComplementaryScheme={handleComplementaryScheme}
       />
+      <Footer />
     </div>
   );
 }

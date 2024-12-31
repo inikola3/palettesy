@@ -25,8 +25,16 @@ const ColorInfoBox = ({ colorValue, handleTextContrast, setIsActive, copied, set
         <div className="infoBox" style={{ display: 'flex', backgroundColor: colorValue }}>
             <IoCloseCircleOutline
                 size={30}
-                className='closeBtn'
+                tabIndex={0}
+                className='absolute top-4 right-4 size-8 mb-4 cursor-pointer transition duration-150 ease-in hover:rotate-180 outline-none focus-visible:ring-4 focus-visible:ring-black'
+                aria-label="Close the color information window"
+                role="button"
                 style={{ color: handleTextContrast(colorValue) }}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        setIsActive(false)
+                    }
+                }}
                 onClick={() => setIsActive(false)}
             />
             <ul style={{ color: handleTextContrast(colorValue) }}>
