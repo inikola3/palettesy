@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
 
 const ColorForm = ({ color, setColor, handleChange, setColorName, handleColorName, setComplementaryValue, handleComplementary, handleConvertToRGB, handleFocus, handleBlur, isPickerVisible, handleTextContrast }) => {
     const [input, setInput] = useState(color)
+
+    useEffect(() => {
+        setInput(color)
+    }, [color])
+
     const handleColorChange = (color) => {
         setColor(color)
         setColorName(handleColorName(color))
@@ -13,7 +18,6 @@ const ColorForm = ({ color, setColor, handleChange, setColorName, handleColorNam
 
     const handleInput = (e) => {
         const input = e.target.value.trim();
-        // const hexRegex = /^#?[0-9a-fA-F]*$/;
         setInput(input);
         if (/^#?[0-9a-f]{3}([0-9a-f]{3})?$/i.test(input)) {
             const formattedInput = input.startsWith('#') ? input : `#${input}`;
